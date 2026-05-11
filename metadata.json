@@ -1,0 +1,7 @@
+{
+  "owner": "zaproxy",
+  "name": "action-full-scan",
+  "visibility": "internal",
+  "description": "Scans the web application with the ZAP Full Scan",
+  "block_publish": false
+}
