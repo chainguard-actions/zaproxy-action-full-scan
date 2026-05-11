@@ -1,0 +1,3 @@
+10016	IGNORE	(Web Browser XSS Protection Not Enabled)
+10017	IGNORE	(Cross-Domain JavaScript Source File Inclusion)
+10020	IGNORE	(X-Frame-Options Header)
