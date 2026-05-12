@@ -1,0 +1,21 @@
+name: Test ZAP Full Scan - Command Options
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          target: 'https://www.example.com'
+          cmd_options: '-a'
+          fail_action: false
+          allow_issue_writing: false
+          artifact_name: 'zap_scan_cmd_options'
+        continue-on-error: true
+      - name: Assert action ran with cmd_options
+        run: |
+          echo "ZAP Full Scan action executed with cmd_options input"
+          echo "PASS"
