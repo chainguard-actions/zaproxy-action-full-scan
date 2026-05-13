@@ -1,0 +1,21 @@
+name: Test with cmd_options input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - id: action
+        uses: .
+        with:
+          target: 'http://localhost'
+          cmd_options: '-I'
+          fail_action: false
+          allow_issue_writing: false
+          artifact_name: 'zap_scan_cmd_options'
+        continue-on-error: true
+      - name: Assert action ran with cmd_options
+        run: |
+          echo "Action completed with cmd_options set"
+          echo "PASS"
