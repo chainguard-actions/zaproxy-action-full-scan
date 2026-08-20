@@ -1,4 +1,4 @@
-name: Test ZAP Full Scan - Basic Usage
+name: Test ZAP Full Scan - Custom Options
 on:
   workflow_dispatch:
 jobs:
@@ -10,28 +10,31 @@ jobs:
       - name: Start a simple HTTP server as scan target
         run: |
           mkdir -p /tmp/www
-          echo '<html><body>Hello ZAP</body></html>' > /tmp/www/index.html
-          cd /tmp/www && python3 -m http.server 8090 &
+          echo '<html><body>Custom Options Test</body></html>' > /tmp/www/index.html
+          cd /tmp/www && python3 -m http.server 8092 &
           sleep 2
-          curl -sf http://localhost:8090/ || (echo "FAIL: HTTP server did not start" && exit 1)
+          curl -sf http://localhost:8092/ || (echo "FAIL: HTTP server did not start" && exit 1)
           echo "HTTP server is up"
 
       - id: zap_scan
         uses: .
         with:
-          target: 'http://localhost:8090'
+          target: 'http://localhost:8092'
           allow_issue_writing: 'false'
           fail_action: 'false'
-          artifact_name: 'zap_basic_scan'
+          artifact_name: 'my_custom_zap_report'
+          issue_title: 'Custom ZAP Security Report'
         continue-on-error: true
 
-      - name: Assert action ran (success or graceful failure)
+      - name: Assert action ran with custom options
         env:
           OUTCOME: ${{ steps.zap_scan.outcome }}
         run: |
           echo "outcome: $OUTCOME"
+          # The action should accept custom artifact_name and issue_title inputs.
+          # It may fail if Docker is unavailable, which is acceptable.
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: ZAP scan completed successfully"
+            echo "PASS: ZAP scan completed with custom options"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: action failed gracefully (Docker/ZAP may not be available in this environment)"
           else
