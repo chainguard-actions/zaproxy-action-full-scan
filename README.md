@@ -10,7 +10,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 |---------|-----|-----------------|
 | v0.10.0 | [`v0.10.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.10.0) | — |
 | v0.11.0 | [`v0.11.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.11.0) | — |
-| v0.12.0 | [`v0.12.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.12.0) | — |
+| v0.12.0 | [`v0.12.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.12.0) | [`75ee168`](https://github.com/zaproxy/action-full-scan/commit/75ee1686750ab1511a73b26b77a2aedd295053ed) |
 | v0.13.0 | [`v0.13.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.13.0) | — |
 | v0.9.0 | [`v0.9.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.9.0) | — |
 
