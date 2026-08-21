@@ -1,2 +1,2 @@
-10010	IGNORE	(Cookie No HttpOnly Flag)
-10011	IGNORE	(Cookie Without Secure Flag)
+10016	IGNORE	(Web Browser XSS Protection Not Enabled)
+10020	IGNORE	(X-Frame-Options Header)

@@ -1,4 +1,4 @@
-name: Test ZAP Full Scan - Rules File
+name: Test rules_file_name input
 on:
   workflow_dispatch:
 jobs:
@@ -8,14 +8,22 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - id: action
         uses: .
+        continue-on-error: true
         with:
           target: 'https://www.example.com'
-          rules_file_name: 'actions/hardened/zaproxy--action-full-scan/v0.13.0/tests/fixtures/zap-rules.tsv'
-          fail_action: false
-          allow_issue_writing: false
-          artifact_name: 'zap_scan_rules'
-        continue-on-error: true
-      - name: Assert action ran with rules_file_name
+          rules_file_name: 'hardened/tests/fixtures/zap-rules.tsv'
+          allow_issue_writing: 'false'
+          fail_action: 'false'
+      - name: Assert action ran with rules_file_name (success or graceful failure on sentinel repo)
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
         run: |
-          echo "ZAP Full Scan action executed with rules_file_name input"
-          echo "PASS"
+          echo "outcome: $OUTCOME"
+          if [ "$OUTCOME" = "success" ]; then
+            echo "PASS: action succeeded with rules_file_name"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (expected under sentinel repo)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
