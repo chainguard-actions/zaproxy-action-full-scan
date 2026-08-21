@@ -1,4 +1,4 @@
-name: Test ZAP Full Scan - Basic Usage
+name: Test ZAP Full Scan - Custom Docker Image
 on:
   workflow_dispatch:
 jobs:
@@ -10,20 +10,20 @@ jobs:
       - name: Start a simple HTTP server as scan target
         run: |
           mkdir -p /tmp/www
-          echo '<html><body><h1>Test Target</h1></body></html>' > /tmp/www/index.html
-          cd /tmp/www && python3 -m http.server 8080 &
+          echo '<html><body><h1>Custom Docker Test</h1></body></html>' > /tmp/www/index.html
+          cd /tmp/www && python3 -m http.server 8082 &
           sleep 2
-          curl -sf http://localhost:8080/ || (echo "FAIL: HTTP server did not start"; exit 1)
-          echo "HTTP server is up"
+          curl -sf http://localhost:8082/ || (echo "FAIL: HTTP server did not start"; exit 1)
+          echo "HTTP server is up on port 8082"
 
       - id: zap_scan
         uses: .
         with:
-          target: 'http://localhost:8080'
-          docker_name: 'ghcr.io/zaproxy/zaproxy:stable'
+          target: 'http://localhost:8082'
+          docker_name: 'ghcr.io/zaproxy/zaproxy:weekly'
           fail_action: false
           allow_issue_writing: false
-          artifact_name: 'zap_scan_basic'
+          artifact_name: 'zap_scan_custom_docker'
           cmd_options: '-I'
         continue-on-error: true
 
@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "outcome: $OUTCOME"
           if [ "$OUTCOME" = "success" ]; then
-            echo "PASS: ZAP full scan completed successfully"
+            echo "PASS: ZAP full scan completed with custom docker image"
           elif [ "$OUTCOME" = "failure" ]; then
             echo "PASS: ZAP full scan step failed gracefully (expected in harness environment)"
           else
