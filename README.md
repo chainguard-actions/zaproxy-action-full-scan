@@ -11,7 +11,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | v0.10.0 | [`v0.10.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.10.0) | — |
 | v0.11.0 | [`v0.11.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.11.0) | [`0f85034`](https://github.com/zaproxy/action-full-scan/commit/0f8503472afc3d03963d42a593629622d1a8c13b) |
 | v0.12.0 | [`v0.12.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.12.0) | [`75ee168`](https://github.com/zaproxy/action-full-scan/commit/75ee1686750ab1511a73b26b77a2aedd295053ed) |
-| v0.13.0 | [`v0.13.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.13.0) | — |
+| v0.13.0 | [`v0.13.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.13.0) | [`3c58388`](https://github.com/zaproxy/action-full-scan/commit/3c58388149901b9a03b7718852c5ba889646c27c) |
 | v0.9.0 | [`v0.9.0`](https://github.com/chainguard-actions/zaproxy-action-full-scan/tree/v0.9.0) | [`bdd21ad`](https://github.com/zaproxy/action-full-scan/commit/bdd21ad4090d552d299261226c553efbc216f5ee) |
 
 ## Privacy
